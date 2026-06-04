@@ -106,5 +106,12 @@ The `Ethereum` row is all `null` when the token has no Ethereum equivalent.
   `minPerTx`, `maxPerTx`.
 - **ETH-equivalent discovery**: `nativeTokenAddress(gnosisToken)` on the Gnosis
   mediator returns the Ethereum origin token (or zero for Gnosis-native tokens).
+- **xDAI bridge (special case)**: the `xDAI <-> USDS` bridge is a separate
+  single-asset bridge appended automatically as two extra rows. Its limit getters
+  take **no token argument**; the Gnosis side is native `xDAI`, and the Ethereum
+  side is the collateral token read from the bridge's `erc20token()` (currently
+  `USDS`, `0xdC035D45d973E3EC169d2276DDab16f1e407384F`).
+  - Ethereum bridge: `0x4aa42145Aa6Ebf72e164C9bBC74fbD3788045016`
+  - Gnosis bridge: `0x7301CFA0e1756B71869E93d4e4Dca5c7d0eb0AA6`
 - **Resilience**: bounded concurrency (4) + exponential-backoff retries so
   public RPCs don't drop requests.
